@@ -15,7 +15,7 @@ const emit = defineEmits([
       title="反馈">
     <div class="feedback-modal">
       <div>
-        给我发Email：<a href="mailto:nianyi778gmail@gmail.com">nianyi778gmail@gmail.com</a>
+        给我发Email：<a href="mailto:nianyi778@gmail.com">nianyi778@gmail.com</a>
       </div>
       <!-- <p>or</p> -->
       <!-- <div class="github">
