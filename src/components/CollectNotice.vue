@@ -41,7 +41,7 @@ const isMac = /macintosh|mac os x/i.test(navigator.userAgent);
     <div class="CollectNotice" v-if="show">
       <div class="notice">
         坚持练习，提高外语能力。将
-        <span class="active">「Typing Word」</span>
+        <span class="active">「Hello Word」</span>
         保存到收藏夹，永不迷失！
       </div>
       <div class="wrapper">

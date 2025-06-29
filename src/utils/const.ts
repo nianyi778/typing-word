@@ -6,7 +6,7 @@ export const SoundFileOptions = [
     {value: '笔记本键盘', label: '笔记本键盘'},
 ]
 
-export const APP_NAME = 'Typing Word'
+export const APP_NAME = 'Hello Word'
 
 export const SAVE_DICT_KEY = {
     key: 'typing-word-dict',

@@ -27,12 +27,6 @@ const settingStore = useSettingStore()
         <Icon icon="tabler:sun" v-else @click="toggleTheme"/>
       </IconWrapper>
     </Tooltip>
-
-    <a href="https://github.com/zyronon/typing-word" target="_blank">
-      <BaseIcon
-          title="Github地址"
-          icon="mdi:github"/>
-    </a>
   </div>
 </template>
 

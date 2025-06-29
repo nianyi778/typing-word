@@ -1,5 +1,5 @@
 <h1 align="center">
-  Typing Word
+  Hello Word
 </h1>
 
 <p align="center">

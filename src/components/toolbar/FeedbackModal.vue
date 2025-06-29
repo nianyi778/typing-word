@@ -15,10 +15,10 @@ const emit = defineEmits([
       title="反馈">
     <div class="feedback-modal">
       <div>
-        给我发Email：<a href="mailto:zyronon@163.com">zyronon@163.com</a>
+        给我发Email：<a href="mailto:nianyi778gmail@gmail.com">nianyi778gmail@gmail.com</a>
       </div>
       <p>or</p>
-      <div class="github">
+      <!-- <div class="github">
         <span>在<a :href="GITHUB" target="_blank">Github</a>上给我提一个
         <a :href="`${GITHUB}/issues`" target="_blank">Issue</a>
         </span>
@@ -36,7 +36,7 @@ const emit = defineEmits([
                target="_blank">功能请求？</a>
           </BaseButton>
         </div>
-      </div>
+      </div> -->
     </div>
   </Dialog>
 </template>
