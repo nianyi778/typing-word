@@ -11,7 +11,7 @@ const routes: RouteRecordRaw[] = [
   { path: '/dict', component: Dict },
   { path: '/mobile', component: Mobile },
   { path: '/test', component: Test },
-  { path: '/login', component: Login },
+  { path: '/login', component: Login, name: 'login'},
   { path: '/', redirect: '/practice' },
 ];
 
