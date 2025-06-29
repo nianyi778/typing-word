@@ -11,6 +11,7 @@ import BaseButton from "@/components/BaseButton.vue";
 import { APP_NAME, EXPORT_DATA_KEY, SAVE_DICT_KEY, SAVE_SETTING_KEY, SoundFileOptions } from "@/utils/const.ts";
 import VolumeIcon from "@/components/icon/VolumeIcon.vue";
 import { BaseState, useBaseStore } from "@/stores/base.ts";
+import { useUserStore } from "@/stores/user.ts";
 import * as copy from "copy-to-clipboard";
 import { saveAs } from "file-saver";
 import { checkAndUpgradeSaveDict, checkAndUpgradeSaveSetting, shakeCommonDict } from "@/utils";
@@ -24,11 +25,16 @@ const emit = defineEmits<{
 const tabIndex = $ref(0)
 const settingStore = useSettingStore()
 const store = useBaseStore()
+const user = useUserStore()
 //@ts-ignore
 const gitLastCommitHash = ref(LATEST_COMMIT_HASH);
 
 useDisableEventListener(() => undefined)
 useWatchAllSound()
+
+const isAdmin = $computed(() => {
+  return user.isAdmin
+})
 
 let editShortcutKey = $ref('')
 
@@ -137,7 +143,7 @@ function importData(e) {
           <Icon icon="icon-park-outline:setting-config" width="20" color="#0C8CE9"/>
           <span>其他设置</span>
         </div>
-        <div class="tab" :class="tabIndex === 3 && 'active'" @click="tabIndex = 3">
+        <div class="tab" :class="tabIndex === 3 && 'active'" @click="tabIndex = 3" v-if="isAdmin">
           <Icon icon="mdi:database-cog-outline" width="20" color="#0C8CE9"/>
           <span>数据管理</span>
         </div>

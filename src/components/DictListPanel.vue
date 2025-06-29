@@ -5,6 +5,7 @@ import {$computed, $ref} from "vue/macros";
 import {dictionaryResources} from "@/assets/dictionary.ts";
 import {groupBy} from "lodash-es";
 import {useBaseStore} from "@/stores/base.ts";
+import {useUserStore} from "@/stores/user.ts";
 import {useSettingStore} from "@/stores/setting.ts";
 import {useRuntimeStore} from "@/stores/runtime.ts";
 import DictList from "@/components/list/DictList.vue";
@@ -17,7 +18,7 @@ const emit = defineEmits<{
 const store = useBaseStore()
 const settingStore = useSettingStore()
 const runtimeStore = useRuntimeStore()
-
+const user = useUserStore()
 let currentLanguage = $ref('my')
 let currentTranslateLanguage = $ref('common')
 let groupByLanguage = groupBy(dictionaryResources, 'language')
@@ -43,14 +44,21 @@ const groupByTranslateLanguage = $computed(() => {
     data = groupBy(articleList, 'translateLanguage')
   } else if (currentLanguage === 'my') {
     data = {
-      common: store.myDictList.concat([{id: '',} as any])
+      common: store.myDictList
+    }
+    if( user.isAdmin){
+      data.common.push({
+        id:""
+      })
     }
   } else {
     data = groupBy(groupByLanguage[currentLanguage], 'translateLanguage')
   }
-  // console.log('groupByTranslateLanguage', data)
   translateLanguageList = Object.keys(data)
   currentTranslateLanguage = translateLanguageList[0]
+
+  // console.log('groupByTranslateLanguage', data,data['common'])
+
   return data
 })
 

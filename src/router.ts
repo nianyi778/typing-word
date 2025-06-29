@@ -1,20 +1,36 @@
-import * as VueRouter from 'vue-router'
-import Practice from "@/pages/practice/index.vue";
-import Dict from '@/pages/dict/index.vue'
-import Mobile from '@/pages/mobile/index.vue'
-import Test from "@/pages/test.vue";
+import { createRouter, createWebHashHistory, RouteRecordRaw } from 'vue-router';
+import Practice from '@/pages/practice/index.vue';
+import Dict from '@/pages/dict/index.vue';
+import Mobile from '@/pages/mobile/index.vue';
+import Test from '@/pages/test.vue';
+import Login from '@/pages/login/index.vue';
+import { useUserStore } from '@/stores/user';
 
-const routes: any[] = [
-    {path: '/practice', component: Practice},
-    {path: '/dict', component: Dict},
-    {path: '/mobile', component: Mobile},
-    {path: '/test', component: Test},
-    {path: '/', redirect: '/practice'},
-]
+const routes: RouteRecordRaw[] = [
+  { path: '/practice', component: Practice },
+  { path: '/dict', component: Dict },
+  { path: '/mobile', component: Mobile },
+  { path: '/test', component: Test },
+  { path: '/login', component: Login },
+  { path: '/', redirect: '/practice' },
+];
 
-const router = VueRouter.createRouter({
-    history: VueRouter.createWebHashHistory(),
-    routes,
-})
+const router = createRouter({
+  history: createWebHashHistory(),
+  routes,
+});
 
-export default router
+// 路由守卫：非登录页自动恢复用户
+router.beforeEach((to, from, next) => {
+  if (to.path !== '/login') {
+    const userStore = useUserStore();
+    const result = userStore.restoreUserFromLocal();
+    if (!result) {
+      next({ path: '/login' });
+      return;
+    }
+  }
+  next();
+});
+
+export default router;
