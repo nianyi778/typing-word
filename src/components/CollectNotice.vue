@@ -5,9 +5,7 @@ import Close from "@/components/icon/Close.vue";
 import BaseButton from "@/components/BaseButton.vue";
 import {watch} from "vue";
 import {useSettingStore} from "@/stores/setting.ts";
-import {useRoute} from "vue-router";
 
-const route = useRoute()
 let settingStore = useSettingStore()
 let showNotice = $ref(false)
 let show = $ref(false)
@@ -29,7 +27,7 @@ function close() {
 }
 
 watch(() => settingStore.load, (n) => {
-  if (n && settingStore.first &&  route.name !== 'login') {
+  if (n && settingStore.first &&  !window.location.hash.includes('#/login')) {
     show = true
   }
 })

@@ -7,12 +7,12 @@ import Login from '@/pages/login/index.vue';
 import { useUserStore } from '@/stores/user';
 
 const routes: RouteRecordRaw[] = [
-  { path: '/practice', component: Practice },
-  { path: '/dict', component: Dict },
-  { path: '/mobile', component: Mobile },
-  { path: '/test', component: Test },
+  { path: '/practice', component: Practice, name: 'practice' },
+  { path: '/dict', component: Dict, name: 'dict' },
+  { path: '/mobile', component: Mobile, name: 'mobile' },
+  { path: '/test', component: Test, name: 'test' },
   { path: '/login', component: Login, name: 'login'},
-  { path: '/', redirect: '/practice' },
+  { path: '/', redirect: '/practice', name: 'root' },
 ];
 
 const router = createRouter({
